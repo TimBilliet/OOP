@@ -23,13 +23,18 @@ public class Kaart {
         }
         this.kleur = kleur;
     }
-
+    public int getWaarde() {
+        return waarde;
+    }
     public boolean isHogerDan(Kaart ander) {
         return this.waarde > ander.waarde;
     }
 
     public boolean isLagerDan(Kaart ander) {
         return this.waarde < ander.waarde;
+    }
+    public boolean isGelijkAan(Kaart ander) {
+        return this.waarde == ander.waarde;
     }
 
     @Override
@@ -44,4 +49,5 @@ public class Kaart {
         }
         return resultaat;
     }
+
 }

@@ -4,28 +4,29 @@ import java.util.Scanner;
 
 public class Oef10 {
     public static void main(String[] args) {
-        Kaart kaart1 = BoekKaarten.geefKaart();
-        System.out.println("De eerste kaart is " + BoekKaarten.geefKaart());
-        System.out.println("Hoger of lager?" );
+
+        Kaart huidigeKaart = BoekKaarten.geefKaart();
+        System.out.println("De eerste kaart is " + huidigeKaart + " waarde: " + huidigeKaart.getWaarde());
+        System.out.println("Hoger of lager?");
         Scanner scanner = new Scanner(System.in);
-        Kaart nieuw = BoekKaarten.geefKaart();
+        Kaart nieuweKaart = BoekKaarten.geefKaart();
         while (scanner.hasNext()) {
+            String input = scanner.nextLine().trim().toLowerCase();
+            if (input.equals("hoger") && nieuweKaart.isHogerDan(huidigeKaart) || input.equals("lager") && nieuweKaart.isLagerDan(huidigeKaart)) {
 
-            String input = scanner.nextLine();
-            System.out.println(input);
-            if (input.equals("hoger" ) && nieuw.isHogerDan(kaart1)) {
-                nieuw = BoekKaarten.geefKaart();
                 System.out.println("JUIST");
+                System.out.println("De volgende kaart was " + nieuweKaart + " (waarde: " + nieuweKaart.getWaarde() + ")");
+                System.out.println("Hoger of lager?");
+                huidigeKaart = nieuweKaart;
+                nieuweKaart = BoekKaarten.geefKaart();
+
+            } else if (input.equals("lager") && nieuweKaart.isHogerDan(huidigeKaart) || input.equals("hoger") && nieuweKaart.isLagerDan(huidigeKaart)
+                    || (input.equals("lager") || input.equals("hoger")) && nieuweKaart.isGelijkAan(huidigeKaart)) {
+                System.out.println("FOUT! Jammer, de volgende kaart was " + nieuweKaart);
                 break;
-            } else if (input.equals("lager" ) && nieuw.isLagerDan(kaart1)) {
-                nieuw = BoekKaarten.geefKaart();
-                System.out.println("JUIST");
-            } else if() {
-
             } else {
-                System.out.println("Antwoord met 'hoger' of 'lager' aub" );
+                System.out.println("Antwoord met 'hoger' of 'lager' aub");
             }
-
         }
     }
 }
