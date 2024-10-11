@@ -1,9 +1,11 @@
-import org.w3c.dom.ls.LSOutput;
+import java.io.FileNotFoundException;
 
 public class Demo {
 
+    public static void main(String[] args) throws FileNotFoundException {
 
-    public static void main(String[] args) {
+        new Bestandslezer("personenMetGeld.csv");
+        
         Persoon moeder = new Persoon("Verdonckt", "Els");
         Persoon zoon = new Persoon("Janssens", "Jan");
         Persoon dochter = new Persoon("Janssens", "Janne");
@@ -18,8 +20,11 @@ public class Demo {
         moeder.geefSpaarcentAan(zoon, 30);
         moeder.geefSpaarcentAan(dochter, 30);
         moeder.versluisNaarSpaar(moeder.getSaldoZicht()-600);
+
         System.out.println(moeder);
         System.out.println(zoon);
         System.out.println(dochter);
+
+
     }
 }
