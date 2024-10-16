@@ -1,21 +1,34 @@
 public class Omzetter {
 
-    private int aantalRijen = 0;
-    private int aantalKolommen = 0;
+    private int aantalRijen;
+    private int aantalKolommen;
 
     public Omzetter(int aantalRijen, int aantalKolommen) {
-        // vul aan
+        this.aantalKolommen = aantalKolommen;
+        this.aantalRijen = aantalRijen;
     }
 
     public int rij(int volgnr) {
-        return -1; // vervang
+        if (volgnr >= 0 && volgnr < aantalRijen * aantalKolommen) {
+            return volgnr / aantalKolommen;
+        } else {
+            return -1;
+        }
     }
 
     public int kolom(int volgnr) {
-        return -1; // vervang
+        if (volgnr >= 0 && volgnr < aantalRijen * aantalKolommen) {
+            return volgnr - aantalKolommen * rij(volgnr);
+        } else {
+            return -1;
+        }
     }
 
     public int volgnr(int rij, int kolom) {
-        return -1; // vervang
+        if(rij >= 0 && rij < aantalRijen && kolom >= 0 && kolom < aantalKolommen) {
+            return rij * aantalKolommen + kolom;
+        } else {
+            return -1;
+        }
     }
 }
