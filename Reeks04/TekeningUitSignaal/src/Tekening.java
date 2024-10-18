@@ -29,9 +29,7 @@ public class Tekening {
             volgnrs[i] = scanner.nextInt();
         }
 
-        for (Integer i : volgnrs) {
-            // System.out.println(i);
-        }
+        System.out.println("volgnrs: " + java.util.Arrays.toString(volgnrs));
 
         // LAAT DIT ONDERAAN STAAN:
         // deze hulpmethode zal de twee dimensies bepalen (kleinsteDim en grootsteDim)
@@ -39,6 +37,7 @@ public class Tekening {
 
         // de beide boolean-matrices worden ingevuld (true = 1-bit = zwart)
         isZwart_portret = matrix(grootsteDim, kleinsteDim);
+        System.out.println("isZwart_portret: " + java.util.Arrays.deepToString(isZwart_portret));
         isZwart_landscape = matrix(kleinsteDim, grootsteDim);
     }
 
@@ -58,17 +57,12 @@ public class Tekening {
     private boolean[][] matrix(int m, int n) {
         boolean[][] matrix = new boolean[n][m]; // vervang deze regel
         Omzetter omzetter = new Omzetter(n, m);
-        for (int i = 0; i < aantalBits; i++) {
-            int rij = omzetter.rij(volgnrs[i]);
-            int kolom = omzetter.kolom(volgnrs[i]);
+        for (int volgnr : volgnrs) {
+            int rij = omzetter.rij(volgnr);
+            int kolom = omzetter.kolom(volgnr);
             matrix[rij][kolom] = true;
         }
-        //for(int i = 0; i < m; i++) {//rij
-        //   for(int j = 0; j < n; j++) {//kolom
 
-
-        // }
-        //  }
         return matrix;
     }
 
@@ -76,16 +70,16 @@ public class Tekening {
     public void print(boolean landscape) {
         // vul aan
         if (landscape) {
-            for (int i = 0; i < kleinsteDim; i++) {
-                for (int j = 0; j < grootsteDim; j++) {
+            for (int i = 0; i < isZwart_landscape.length; i++) {
+                for (int j = 0; j < isZwart_landscape[i].length; j++) {
                     System.out.print(isZwart_landscape[i][j] ? "XX" : "  ");
                 }
                 System.out.println();
             }
         } else {
-            for (int i = 0; i < kleinsteDim; i++) {
-                for (int j = 0; j < grootsteDim; j++) {
-                    System.out.print(isZwart_portret[j][i] ? "XX" : "  ");
+            for (int i = 0; i < isZwart_portret.length; i++) {
+                for (int j = 0; j < isZwart_portret[i].length; j++) {
+                    System.out.print(isZwart_portret[i][j] ? "XX" : "  ");
                 }
                 System.out.println();
             }
