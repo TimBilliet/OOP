@@ -5,31 +5,32 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 /**
+ *
  * @author tiwi
  */
 public class SpreukZoeker {
-    private Map<Integer, TreeSet<String>> woordenPerLengte = new HashMap<>();
-    private Set<String> woorden = new TreeSet<>();
+    private Map<Integer, String> woorden = new TreeMap<>();
+
     public SpreukZoeker(String bestandsnaam) throws FileNotFoundException {
 
         Scanner sc = new Scanner(new File(bestandsnaam));
-        while (sc.hasNext()) {
+        while(sc.hasNext()) {
             String woord = sc.next().toLowerCase();
-            woorden.add(woord);
-            if (woordenPerLengte.containsKey(woord.length())) {
-                woordenPerLengte.get(woord.length()).add(woord);
+            if(woorden.containsKey(woord.length())) {
+                if(woorden.get(woord.length()).compareTo(woord) > 0) {
+                    woorden.put(woord.length(), woord);
+                }
             } else {
-                TreeSet<String> eerstewoord = new TreeSet<>();
-                eerstewoord.add(woord);
-                woordenPerLengte.put(woord.length(), eerstewoord);
+                woorden.put(woord.length(), woord);
             }
         }
     }
-
     public void printSpreuk(int[] getallen) {
         for(Integer getal : getallen) {
-            System.out.println(woordenPerLengte.get(getal).first());
+            System.out.print(woorden.get(getal) + " ");
         }
     }
+
+
 
 }
