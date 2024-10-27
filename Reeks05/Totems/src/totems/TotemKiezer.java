@@ -23,26 +23,25 @@ public class TotemKiezer {
             totems.add(scannerTotems.next());
         }
         while (scannerVoorTotems.hasNext()) {
-             voortotems.add(scannerVoorTotems.next());
+            voortotems.add(scannerVoorTotems.next());
         }
-
+        System.out.println(voortotems);
     }
 
-    public List<String> geefVerschillendeNamen(int aantal, boolean voortotem) {
+    public List<String> geefVerschillendeNamen(int aantal, boolean totem) {
         List<String> verschillendeNamen = new ArrayList<>();
         Set<String> totemsTemp = new HashSet<>();
 
-        if (voortotem) {
-            while(totemsTemp.size() < aantal) {
-                totemsTemp.add(voortotems.get(random.nextInt(totems.size()))) ;
+        if (!totem) {
+            while (totemsTemp.size() < aantal) {
+                totemsTemp.add(voortotems.get(random.nextInt(totems.size())));
             }
-
         } else {
-            while(totemsTemp.size() < aantal) {
+            while (totemsTemp.size() < aantal) {
                 totemsTemp.add(totems.get(random.nextInt(totems.size())));
             }
-            verschillendeNamen.addAll(totemsTemp);
         }
+        verschillendeNamen.addAll(totemsTemp);
         return verschillendeNamen;
     }
 

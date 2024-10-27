@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f2c29c9-7401-406f-a687-834f0b2cc027" name="Changes" comment="reeks 4 toegevoegd">
-      <change beforePath="$PROJECT_DIR$/TekeningUitSignaal.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/one_bits.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/one_bits_bis.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +36,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Tim/Documents/github repos/OOP/Reeks04/Adressen",
+    "last_opened_file_path": "C:/Users/Tim/Documents/Github repositories/OOP/Reeks05/Totems",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -59,8 +57,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18968.26" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18968.26" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19416.15" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19416.15" />
       </set>
     </attachedChunks>
   </component>
@@ -81,6 +79,8 @@
       <workItem from="1728902033559" duration="480000" />
       <workItem from="1729241980796" duration="2285000" />
       <workItem from="1729497652759" duration="341000" />
+      <workItem from="1730017784932" duration="68000" />
+      <workItem from="1730017902279" duration="315000" />
     </task>
     <task id="LOCAL-00001" summary="reeks 4 toegevoegd">
       <option name="closed" value="true" />
