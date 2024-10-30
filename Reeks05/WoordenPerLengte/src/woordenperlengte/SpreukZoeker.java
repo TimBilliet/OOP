@@ -15,7 +15,7 @@ public class SpreukZoeker {
 
         Scanner sc = new Scanner(new File(bestandsnaam));
         while(sc.hasNext()) {
-            String woord = sc.next().toLowerCase();
+            String woord = sc.next();
             if(woorden.containsKey(woord.length())) {
                 if(woorden.get(woord.length()).compareTo(woord) > 0) {
                     woorden.put(woord.length(), woord);
@@ -30,7 +30,4 @@ public class SpreukZoeker {
             System.out.print(woorden.get(getal) + " ");
         }
     }
-
-
-
 }
