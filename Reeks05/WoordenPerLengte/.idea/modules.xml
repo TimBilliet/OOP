@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Groepsindeling.iml" filepath="$PROJECT_DIR$/Groepsindeling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WoordenPerLengte.iml" filepath="$PROJECT_DIR$/WoordenPerLengte.iml" />
     </modules>
   </component>
 </project>

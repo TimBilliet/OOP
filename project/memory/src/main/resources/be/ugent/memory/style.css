@@ -1,0 +1,96 @@
+/* Color Palette:
+#000000
+#14213d
+#fca311
+#e5e5e5
+#ffffff
+*/
+
+.root {
+    -fx-background-color: #e5e5e5;
+    -fx-padding: 20;
+}
+
+.label {
+    -fx-text-fill: #14213d;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+.controlButton {
+    -fx-background-color: #fca311;
+    -fx-background-radius: 10;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-border-color: #14213d;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+}
+
+.controlButton:hover {
+    -fx-background-color: #14213d;
+    -fx-text-fill: #fca311;
+}
+
+.buttonGrid .button {
+    -fx-background-radius: 15;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #14213d;
+    -fx-font-size: 32px;
+    -fx-border-color: #fca311;
+    -fx-border-width: 3;
+    -fx-border-radius: 15;
+    -fx-cursor: hand;
+}
+
+.buttonGrid .button:hover {
+    -fx-background-color: #fca311;
+    -fx-text-fill: #ffffff;
+}
+
+.selected.button {
+    -fx-background-color: #fca311;
+    -fx-text-fill: #ffffff;
+}
+
+.unselected.button {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #14213d;
+    -fx-border-color: #14213d;
+}
+
+.gameOverLabel {
+    -fx-text-fill: #fca311;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.titleScreen {
+    -fx-background-color: #14213d;
+    -fx-padding: 50;
+    -fx-alignment: center;
+}
+
+.titleScreen .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.titleScreen .controlButton {
+    -fx-background-color: #fca311;
+    -fx-background-radius: 10;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2;
+    -fx-cursor: hand;
+}
+
+.titleScreen .controlButton:hover {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #14213d;
+}
