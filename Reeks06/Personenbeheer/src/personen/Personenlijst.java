@@ -38,7 +38,6 @@ public class Personenlijst {
                     }
                     personen.add(persoon);
                 }
-
                 scLijn.close();
             }
         }

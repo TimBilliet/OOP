@@ -37,6 +37,7 @@ public class Persoon {
     public void voegHobbyToe(String hobby) {
         this.hobbys.add(hobby);
     }
+
     public void voegInformatieToe(String soort) {
         String delen[] = soort.split(":");
         if(delen[0].equals("haarkleur") || delen[0].equals("hobby")) {
@@ -60,7 +61,7 @@ public class Persoon {
 
     @Override
     public String toString() {
-        return "Persoon " + voornaam + " " + naam + ", haar=" + haarkleur + ", hobbys=" + hobbys;
+        return getClass().getSimpleName() + " " + voornaam + " " + naam + ", haar=" + haarkleur + ", hobbys=" + hobbys;
     }
 
 
