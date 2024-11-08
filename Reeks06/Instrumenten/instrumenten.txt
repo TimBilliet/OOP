@@ -1,0 +1,13 @@
+KOPER;hoorn;2800;fa
+KOPER;dwarsfluit;500;ut
+HOUT;fagot;3000;ut
+SNAAR;altviool;1000
+HOUT;klarinet;780;la
+HOUT;hobo;650;ut
+SNAAR;contrabas;11000
+SNAAR;cello;3000
+INSTR;buffetpiano;180000
+INSTR;vleugelpiano;400000
+SNAAR;viool;450
+KOPER;trompet;1000;bes
+KOPER;trombone;1200;bes
