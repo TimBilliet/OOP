@@ -40,8 +40,10 @@ public class Persoon {
 
     public void voegInformatieToe(String soort) {
         String delen[] = soort.split(":");
-        if(delen[0].equals("haarkleur") || delen[0].equals("hobby")) {
+        if(delen[0].equals("hobby")) {
             voegHobbyToe(delen[1]);
+        } else if(delen[0].equals("haarkleur")) {
+            setHaarkleur(delen[1]);
         }
     //soortInfo:inhoudInfo
     }
