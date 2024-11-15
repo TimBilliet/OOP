@@ -13,7 +13,7 @@ public class Persoon {
 
     private String naam;
     private String voornaam;
-    private String haarkleur;
+    private String haarkleur = "";
     private Set<String> hobbys;
 
     public Persoon(String naam, String voornaam) {

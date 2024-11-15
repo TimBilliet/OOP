@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Student extends Persoon{
-    private String studie;
+    private String studie = "";
     private Set<String> diplomas;
 
     public Student(String naam, String voornaam) {
