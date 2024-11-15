@@ -20,9 +20,7 @@ public class Student extends Persoon{
             studie = delen[1];
         } else if(delen[0].equals("diploma")) {
             diplomas.add(delen[1]);
-        } else if(delen[0].equals("hobby")) {
-            super.voegInformatieToe(soort);
-        } else if(delen[0].equals("haarkleur")) {
+        } else {
             super.voegInformatieToe(soort);
         }
     }
@@ -33,20 +31,6 @@ public class Student extends Persoon{
 
     public String getStudie() {
         return studie;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Student student = (Student) o;
-        return super.equals(student);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
     @Override

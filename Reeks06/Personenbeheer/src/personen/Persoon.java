@@ -61,24 +61,9 @@ public class Persoon {
         return Objects.hash(naam, voornaam);
     }
 
-    //    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof Persoon)) return false;
-//        Persoon persoon = (Persoon) o;
-//        return Objects.equals(naam, persoon.naam) && Objects.equals(voornaam, persoon.voornaam);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(naam, voornaam);
-//    }
-
     @Override
     public String toString() {
         return getClass().getSimpleName() + " " + voornaam + " " + naam + ", haar=" + haarkleur + ", hobbys=" + hobbys;
     }
 
-
-    
 }
