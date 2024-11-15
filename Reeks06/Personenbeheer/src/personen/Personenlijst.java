@@ -15,7 +15,7 @@ public class Personenlijst {
     // makkelijk opgevraagd moet kunnen worden (dat kan met een iterator voor een set - komt later aan bod)
     private List<Persoon> personen;
 
-
+    private int count = 0;
     public Personenlijst(String bestandsnaam) throws FileNotFoundException {
         personen = new ArrayList<>();
         try (Scanner sc = new Scanner(new File(bestandsnaam))) {
@@ -24,9 +24,14 @@ public class Personenlijst {
                 Scanner scLijn = new Scanner(lijn);
                 scLijn.useDelimiter("/");
                 String soort = scLijn.next();  // hebben we niet nodig op dit moment
-                System.out.println(soort);
-                Persoon persoon = new Persoon(scLijn.next(), scLijn.next());
+                //Persoon persoon = new Persoon(scLijn.next(), scLijn.next());
+                Persoon persoon = null;
 
+                try {
+                    persoon = (Persoon) Class.forName("personen." + soort).getConstructor(String.class, String.class).newInstance(scLijn.next(), scLijn.next());
+                } catch (Exception ex ) {
+                    System.out.println("Maken van object gefaald: " + ex);
+                } 
                 if (personen.contains(persoon)) {
                     Persoon teBewerkenPersoon = personen.get(personen.indexOf(persoon));
                     while (scLijn.hasNext()) {
