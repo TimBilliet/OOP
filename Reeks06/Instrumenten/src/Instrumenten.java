@@ -83,12 +83,7 @@ public class Instrumenten {
         for(Instrument instr : instrumentenLijst) {
             //if(instr instanceof Blazer && ((Blazer)instr).getSleutel().equals(sleutel)) {
             if(instr instanceof Blazer blazer && blazer.getSleutel().equals(sleutel)) {
-                if(blazer instanceof Houtblazer houtblazer) {
-                    blazerMetSleutelLijst.add(houtblazer);
-                } else if(blazer instanceof Koperblazer koperblazer){
-                    blazerMetSleutelLijst.add(koperblazer);
-                }
-                //moeten subklasse objecten zijn, koperblazern en houtblazer
+                    blazerMetSleutelLijst.add(blazer);
             }
         }
         return blazerMetSleutelLijst;
