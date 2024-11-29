@@ -40,7 +40,12 @@ public class Instrument implements Comparable<Instrument> {
     }
 
     public int compareTo(Instrument instrument) {
-        return instrument.gewicht - gewicht;
+        if(instrument.gewicht - gewicht != 0) {
+            return instrument.gewicht - gewicht;
+        }
+        //else {
+          return 0;
+        //}
     }
 
     @Override

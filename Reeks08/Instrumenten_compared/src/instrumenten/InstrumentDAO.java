@@ -73,6 +73,26 @@ public class InstrumentDAO {
 
     // to do
     public Set<Instrument> gesorteerdOpGewicht() {
+        Instrument instr1 = null;
+        Instrument instr2=null;
+        int toegekend = 0;
+        Set<Instrument> testset = new TreeSet<>();
+        for(Instrument instr: instrumenten) {
+            //System.out.println(instr);
+            if(instr.getGewicht() == 1000 && toegekend == 0) {
+                instr1 = instr;
+                toegekend++;
+            } else if(instr.getGewicht() == 1000 && toegekend == 1) {
+                instr2 = instr;
+                toegekend++;
+            }
+        }
+        System.out.println(instr1.compareTo(instr2));
+        testset.add(instr1);
+        testset.add(instr2);
+        System.out.println(instr1);
+        System.out.println(instr2);
+        System.out.println(testset);
         return new TreeSet<>(instrumenten); // pas aan
     }
 

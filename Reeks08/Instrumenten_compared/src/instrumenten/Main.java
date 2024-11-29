@@ -13,11 +13,11 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException {
         instrumenten = new InstrumentDAO("instrumenten.txt");
-        deel0();
-        deel1();
-        deel2();
-        deel3();
-        deel4();
+//        deel0();
+//        deel1();
+//        deel2();
+//        deel3();
+//        deel4();
         deel5();
         // deel6();
         // deel7();
