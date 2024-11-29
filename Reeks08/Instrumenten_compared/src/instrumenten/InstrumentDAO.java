@@ -2,20 +2,18 @@ package instrumenten;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class InstrumentDAO {
 
     // verander List in Set
-    private List<Instrument> instrumenten;
+    //private List<Instrument> instrumenten;
+    private Set<Instrument> instrumenten;
 
     public InstrumentDAO(String bestandsnaam) throws FileNotFoundException {
 
         // verander ArrayList in HashSet
-        instrumenten = new ArrayList<>();
+        instrumenten = new HashSet<>();
         try (Scanner sc = new Scanner(new File(bestandsnaam))) {
             while (sc.hasNext()) {
                 Scanner sc2 = new Scanner(sc.nextLine());
@@ -36,6 +34,7 @@ public class InstrumentDAO {
             }
         }
     }
+
 
     public int aantalVanKlasse(String soort) {
         int aant = 0;
@@ -74,7 +73,7 @@ public class InstrumentDAO {
 
     // to do
     public Set<Instrument> gesorteerdOpGewicht() {
-        return null; // pas aan
+        return new TreeSet<>(instrumenten); // pas aan
     }
 
     // to do

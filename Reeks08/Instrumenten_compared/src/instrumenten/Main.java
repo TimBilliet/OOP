@@ -18,7 +18,7 @@ public class Main {
         deel2();
         deel3();
         deel4();
-        // deel5();
+        deel5();
         // deel6();
         // deel7();
     }
