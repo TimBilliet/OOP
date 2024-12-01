@@ -23,7 +23,7 @@ public class TellerVanBestandsinhoud {
     // en niet telkens er naar het aantal (ints, doubles, strings) gevraagd wordt.
     // Met andere woorden: lees hier het bestand en initialiseer hier de
     // instantievariabele 'aantal'.
-    private void telPerSoort() {
+    private void telPerSoort() throws FileNotFoundException {
         try(Scanner sc = new Scanner(new File(bestandsnaam))) {
             aantal = new Aantal();
             while (sc.hasNext()) {
@@ -36,8 +36,6 @@ public class TellerVanBestandsinhoud {
                     aantal.verhoogString();
                 }
             }
-        } catch (FileNotFoundException ex) {
-            System.out.println("Bestand niet gevonden");
         }
     }
 
@@ -61,7 +59,7 @@ public class TellerVanBestandsinhoud {
 
     // enkel indien het aantal nog niet goed geïnitaliseerd is, 
     // mag je het initialiseren.
-    public int getAantalInt() {
+    public int getAantalInt() throws FileNotFoundException {
         if(aantal == null) {
            // aantal = new Aantal();
             telPerSoort();
@@ -70,7 +68,7 @@ public class TellerVanBestandsinhoud {
     }
 
     // zelfde opmerking over initialisatie van aantal
-    public int getAantalDouble() {
+    public int getAantalDouble() throws FileNotFoundException {
         if(aantal == null) {
             telPerSoort();
         }
@@ -78,7 +76,7 @@ public class TellerVanBestandsinhoud {
     }
 
     // zelfde opmerking over initialisatie van aantal
-    public int getAantalString() {
+    public int getAantalString() throws FileNotFoundException {
         if(aantal == null) {
             telPerSoort();
         }
