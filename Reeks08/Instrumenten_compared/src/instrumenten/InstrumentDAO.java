@@ -73,37 +73,21 @@ public class InstrumentDAO {
 
     // to do
     public Set<Instrument> gesorteerdOpGewicht() {
-        Instrument instr1 = null;
-        Instrument instr2=null;
-        int toegekend = 0;
-        Set<Instrument> testset = new TreeSet<>();
-        for(Instrument instr: instrumenten) {
-            //System.out.println(instr);
-            if(instr.getGewicht() == 1000 && toegekend == 0) {
-                instr1 = instr;
-                toegekend++;
-            } else if(instr.getGewicht() == 1000 && toegekend == 1) {
-                instr2 = instr;
-                toegekend++;
-            }
-        }
-        System.out.println(instr1.compareTo(instr2));
-        testset.add(instr1);
-        testset.add(instr2);
-        System.out.println(instr1);
-        System.out.println(instr2);
-        System.out.println(testset);
         return new TreeSet<>(instrumenten); // pas aan
     }
 
     // to do
     public Set<Instrument> gesorteerdOpNaam() {
-        return null; // pas aan
+        Set<Instrument> opnaam = new TreeSet<>(new ComparatorOpNaam());
+        opnaam.addAll(instrumenten);
+        return opnaam; // pas aan
     }
 
     // to do
     public Set<Instrument> gesorteerdOpSoort() {
-        return null; // pas aan
+        Set<Instrument> opsoort = new TreeSet<>(new ComparatorOpSoort());
+        opsoort.addAll(instrumenten);
+        return opsoort; // pas aan
     }
 
     /*
@@ -113,7 +97,7 @@ public class InstrumentDAO {
     class 'Class'.
     */
     public int aantalVanKlasseOfAfgeleidVanKlasse(String soort) throws ClassNotFoundException {
-        Class klasse = Class.forName("instrumenten." + soort);
+        Class<?> klasse = Class.forName("instrumenten." + soort);
         int aant = 0;
         for (Instrument instr : instrumenten) {
             if (klasse.isInstance(instr)) {
