@@ -1,0 +1,304 @@
+OPLOSSING LABO 5 DEEL 1 'ruimtefiguren'
+______________________________________________________________________________________________________
+public abstract class Ruimtefiguur implements Comparable {
+
+    public abstract double getVolume();
+
+    public abstract String getKleur();
+
+    @Override
+    public String toString() {
+        NumberFormat formatter = new DecimalFormat("#0.0");
+        return this.getClass().getName().substring(8) + " [" + getKleur() + " " + formatter.format(getVolume()) + "]";
+    }
+
+    /* QUOTE UIT JAVA API 
+    It is strongly recommended, but not strictly required 
+    that (x.compareTo(y)==0) == (x.equals(y)). 
+    Generally speaking, any class that implements the Comparable interface 
+    and violates this condition should clearly indicate this fact. 
+    The recommended language is 
+    "Note: this class has a natural ordering that is inconsistent with equals."
+     */
+    // We zorgen er hier dus voor dat 'equals' uit de klassen Balk en Cilinder
+    // overeenkomt met compareTo()==0 !!
+    @Override
+    public int compareTo(Object o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+        if (!(o instanceof Ruimtefiguur)) {
+            throw new ClassCastException();
+        }
+        Ruimtefiguur figuur = (Ruimtefiguur) o;
+        double volumeA = getVolume();
+        double volumeB = figuur.getVolume();
+        if (Math.abs(volumeA - volumeB) > 0.00001) {
+            return (int) ((volumeA - volumeB) * 10000);
+        } else if (!getKleur().equals(figuur.getKleur())) {
+            return getKleur().compareTo(figuur.getKleur());
+        } else if (!this.getClass().getName().equals(figuur.getClass().getName())) {
+            return getClass().getName().compareTo(figuur.getClass().getName());
+        } else{
+            // In het laatste geval zijn volume, kleur en klasse gelijk.
+            // Dan moet je de beide objecten vergelijken op basis van de 
+            // instantievariabelen die in die bewuste klasse staan
+            // (bvb lengte,breedte,hoogte).
+            // Omdat we dit hier niet kunnen voorspellen (we weten niet welke
+            // klassen allemaal zullen afgeleid worden van Ruimtefiguur),
+            // vragen we elke afgeleide klasse de implementatie van een methode
+            // 'compareKey()' die de vergelijking zelf doet, op basis
+            // van de (in de afgeleide klasse) beschikbare informatie
+            return this.compareKey(figuur);
+        }
+    }
+
+    
+    // Deze methode verschuift het vergelijken van twee objecten 
+    // van dezelfde basisklasse (en met zelfde getVolume() en getKleur())
+    // naar de basisklasse zelf.
+    // BELANGRIJK: als compareKey() aangeeft dat twee objecten (van dezelfde
+    // afgeleide klasse) gelijk zijn, dan is hun volume dat zeker ook.
+    public abstract int compareKey(Ruimtefiguur ander);     
+}
+_________________________________________________________________________________________________________
+public class Balk extends Ruimtefiguur {
+
+    private final String kleur;
+    private final double lengte;
+    private final double breedte;
+    private final double hoogte;
+
+    public Balk(double l, double b, double h, String kleur) {
+        lengte = l;
+        breedte = b;
+        hoogte = h;
+        this.kleur = kleur;
+    }
+
+    @Override
+    public double getVolume() {
+        return lengte * breedte * hoogte;
+    }
+
+    @Override
+    public String getKleur() {
+        return kleur;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.kleur);
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.lengte) ^ (Double.doubleToLongBits(this.lengte) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.breedte) ^ (Double.doubleToLongBits(this.breedte) >>> 32));
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.hoogte) ^ (Double.doubleToLongBits(this.hoogte) >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Balk other = (Balk) obj;
+        if (Double.doubleToLongBits(this.lengte) != Double.doubleToLongBits(other.lengte)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.breedte) != Double.doubleToLongBits(other.breedte)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.hoogte) != Double.doubleToLongBits(other.hoogte)) {
+            return false;
+        }
+        if (!Objects.equals(this.kleur, other.kleur)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int compareKey(Ruimtefiguur ander) {
+        if (!(ander instanceof Balk)) {
+            throw new ClassCastException();
+        }
+        Balk b = (Balk) ander;
+        if (Math.abs(lengte - b.lengte) < 0.00001) {
+            return lengte - b.lengte < 0 ? -1 : 1;
+        }
+        if (Math.abs(breedte - b.breedte) < 0.00001) {
+            return breedte - b.breedte < 0 ? -1 : 1;
+        }
+        if (Math.abs(hoogte - b.hoogte) < 0.00001) {
+            return hoogte - b.hoogte < 0 ? -1 : 1;
+        }
+        return 0;
+    }
+}
+_________________________________________________________________________________________________________
+public class Cilinder extends Ruimtefiguur{
+
+    private final String kleur;
+    private final double straal;
+    private final double hoogte;
+    
+    public Cilinder(double straal, double hoogte,String kleur){
+        this.straal = straal;
+        this.hoogte = hoogte;
+        this.kleur = kleur;
+    }
+    
+    @Override
+    public double getVolume() {
+        return Math.PI * straal * straal * hoogte;
+    }
+
+    @Override
+    public String getKleur() {
+        return kleur;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.kleur);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.straal) ^ (Double.doubleToLongBits(this.straal) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.hoogte) ^ (Double.doubleToLongBits(this.hoogte) >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cilinder other = (Cilinder) obj;
+        if (Double.doubleToLongBits(this.straal) != Double.doubleToLongBits(other.straal)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.hoogte) != Double.doubleToLongBits(other.hoogte)) {
+            return false;
+        }
+        if (!Objects.equals(this.kleur, other.kleur)) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
+    public int compareKey(Ruimtefiguur ander) {
+        if (!(ander instanceof Cilinder)) {
+            throw new ClassCastException();
+        }
+        Cilinder b = (Cilinder) ander;
+        if (Math.abs(hoogte - b.hoogte) < 0.00001) {
+            return hoogte - b.hoogte < 0 ? -1 : 1;
+        }
+        if (Math.abs(straal - b.straal) < 0.00001) {
+            return straal - b.straal < 0 ? -1 : 1;
+        }
+        return 0;
+    }
+}
+_________________________________________________________________________________________________________
+public class Main {
+    
+    // Tussentijds testje om aan te tonen dat het NIET slim is
+    // om in de methodes compare, compareTo en compareKey 
+    // een double (bvb verschil in lengte van 2 figuren)
+    // te casten naar een int om aan het gewenste returntype 
+    // te voldoen. 
+    // Hoe het dan wel moet? Twee mogelijkheden;
+    // zie compareKey in Balk (of Cilinder)
+    // of compareTo in Ruimtefiguur.
+    public static void main1(String[] args) {
+        for(int i=-10; i<20; i++){
+            double x = i/10.0;
+            System.out.println(""+x+" gecast naar int wordt "+(int)x);
+        }
+    }
+        
+    public static void main(String[] args) {
+
+        DAOFigurenDummy dummy = new DAOFigurenDummy();
+
+        System.out.println("Dit zijn alle figuren:\n");
+        for(Ruimtefiguur f : dummy.getFiguren()){
+            System.out.println(""+f);
+        }
+        
+        System.out.println("Er zijn " + dummy.getFiguren().size() + " figuren.");
+        System.out.println("Er zijn " + dummy.getBalken().size() + " verschillende balken.");
+        System.out.println("Er zijn " + dummy.getCilinders().size() + " verschillende cilinders.\n");
+
+        String[] kleuren = {"rood", "geel", "blauw"};
+        for (String kleur : kleuren) {
+            System.out.println("\nVOOR KLEUR " + kleur + ":\n");
+            System.out.println("Grootste van figuren   is " + max(dummy.getFiguren(), kleur));
+            System.out.println("Grootste van balken    is " + max(dummy.getBalken(), kleur));
+            System.out.println("Grootste van cilinders is " + max(dummy.getCilinders(), kleur));
+            System.out.println("");
+            System.out.println("Grootste van figuren   is " + maxBis(dummy.getFiguren(), kleur));
+            System.out.println("Grootste van balken    is " + maxBis(dummy.getBalken(), kleur));
+            System.out.println("Grootste van cilinders is " + maxBis(dummy.getCilinders(), kleur));
+        }
+    }
+
+// OPLOSSING:    
+// Oplossing die er vanuitgaat dat er wordt gesorteerd op een eigenschap
+// die type 'double' heeft, en bovendien zeker niet negatief is.
+// Die vlieger gaat niet altijd op.
+    public static Ruimtefiguur max(Collection<? extends Ruimtefiguur> collectie, String kleur) {
+        Ruimtefiguur grootste = null;
+        double volume = 0;
+        for (Ruimtefiguur fig : collectie) {
+            if (fig.getKleur().equals(kleur) && fig.getVolume() > volume) {
+                volume = fig.getVolume();
+                grootste = fig;
+            }
+        }
+        return grootste;
+    }
+
+    // Oplossing die enkel de compareTo-methode gebruikt.
+    public static Ruimtefiguur maxBis(Collection<? extends Ruimtefiguur> collectie, String kleur) {
+        if (collectie.isEmpty()) {
+            return null;
+        }
+        Iterator iterator = collectie.iterator();
+        Ruimtefiguur grootste = (Ruimtefiguur) iterator.next(); 
+        // zoek de eerste figuur van de juiste kleur
+        while(iterator.hasNext() && !grootste.getKleur().equals(kleur)){
+            grootste = (Ruimtefiguur) iterator.next();
+        }
+        
+        // als je geen figuur van de juiste kleur vond
+        if(!grootste.getKleur().equals(kleur)){
+            return null;
+        }
+        
+        // De iterator laat je toe één element uit de collectie te halen.
+        // Daarna mag je de iterator verder gebruiken.
+        
+        while (iterator.hasNext()) {
+            Ruimtefiguur volgende = (Ruimtefiguur) iterator.next();
+            if (volgende.getKleur().equals(kleur) && volgende.compareTo(grootste) > 0) {
+                grootste = volgende;
+            }
+        }
+
+        return grootste;
+    }
+}
