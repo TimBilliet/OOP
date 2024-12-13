@@ -13,8 +13,8 @@ import java.util.TreeSet;
 public class Main {
 
     public static void main(String[] args) {
-        vraag1();
-//        vraag2();
+//        vraag1();
+        vraag2();
     }
 
     public static void vraag1() {
@@ -65,7 +65,7 @@ public class Main {
     }
 
     private static Ruimtefiguur max(Collection<? extends Ruimtefiguur> collection, String kleur) {
-        return collection.stream().filter(f -> f.getKleur().equals(kleur)).max(new GrootteComparator()).get();
+        return collection.stream().filter(f -> f.getKleur().equals(kleur)).max((fig, maxFig) -> fig.compareTo(maxFig)).get();
     }
 
 }
