@@ -60,11 +60,11 @@ public class Puzzelhulp {
 
     public String alfabetischEerste(int lengte) {
 
-        return woorden.stream().filter(x -> x.length() == lengte).min(String::compareTo).orElse("-");
+        return woorden.stream().filter(x -> x.length() == lengte).min(Comparator.comparing(String::toLowerCase)).orElse("-");
     }
 
     public String alfabetischLaatste(int lengte) {
-        return woorden.stream().filter(x -> x.length() == lengte).max(String::compareTo).orElse("-");
+        return woorden.stream().filter(x -> x.length() == lengte).max(Comparator.comparing(String::toLowerCase)).orElse("-");
 
     }
 
