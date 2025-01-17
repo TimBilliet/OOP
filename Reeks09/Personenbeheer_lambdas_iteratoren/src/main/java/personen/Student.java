@@ -7,7 +7,7 @@ import java.util.Set;
  *
  * @author tiwi
  */
-public class Student extends Persoon {
+public class Student extends Persoon implements Cloneable{
     private String studie;    
     private Set<String> diplomas;
     
@@ -16,11 +16,6 @@ public class Student extends Persoon {
         diplomas = new HashSet<>();
 
     }
-    public Student(Student student){
-        super(student);
-        diplomas = student.diplomas;
-    }
-
     
     public String getStudie() {
         return studie;
@@ -56,5 +51,11 @@ public class Student extends Persoon {
             super.voegInformatieToe(informatie);
         }
     }
-    
+
+    @Override
+    public Student clone() {
+        Student nieuw = (Student) super.clone();
+        nieuw.diplomas = new HashSet<>(diplomas);
+        return nieuw;
+    }
 }

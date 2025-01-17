@@ -42,10 +42,8 @@ public class Personenlijst implements Iterable<Persoon> {
     public Personenlijst(Personenlijst lijst, boolean enkelStudenten) {
         personen = new ArrayList<>();
         for(Persoon persoon : lijst){
-            if(enkelStudenten && persoon instanceof Student) {
-                personen.add(new Student((Student) persoon));
-            } else if(!enkelStudenten && persoon.getClass().equals(Persoon.class)) {
-                personen.add(new Persoon(persoon));
+            if(enkelStudenten == persoon instanceof Student) {
+                personen.add(persoon.clone());
             }
         }
     }

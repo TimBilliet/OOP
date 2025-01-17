@@ -8,7 +8,7 @@ import java.util.TreeSet;
  *
  * @author tiwi
  */
-public class Persoon {
+public class Persoon implements Cloneable{
 
     protected String naam;
     protected String voornaam;
@@ -19,12 +19,6 @@ public class Persoon {
         this.naam = naam;
         this.voornaam = voornaam;
         this.hobbys = new TreeSet<>();
-    }
-    public Persoon(Persoon persoon) {
-        this.naam = persoon.naam;
-        this.voornaam = persoon.voornaam;
-        this.haarkleur = persoon.haarkleur;
-        this.hobbys = persoon.hobbys;
     }
 
     public String getHaarkleur() {
@@ -89,5 +83,14 @@ public class Persoon {
     public String getVoornaam() {
         return voornaam;
     }
-
+    @Override
+    public Persoon clone() {
+        try {
+            Persoon nieuw = (Persoon) super.clone();
+            nieuw.hobbys = new HashSet<>(hobbys);
+            return nieuw;
+        } catch (CloneNotSupportedException ignored) {
+            return null;
+        }
+    }
 }
